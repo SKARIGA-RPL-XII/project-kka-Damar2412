@@ -12,6 +12,10 @@ public class PlayerUIMove : MonoBehaviour
 
     void Update()
     {
+        // ⛔ STOP gerak kalau inventory terbuka
+        if (InventoryUI.isOpen)
+            return;
+
         float x = 0;
         float y = 0;
 

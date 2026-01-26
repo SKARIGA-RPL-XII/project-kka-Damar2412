@@ -719,7 +719,8 @@ MonoBehaviour:
   player: {fileID: 2076226352}
   interactDistance: 80
   growTime: 5
-  emptyTile: {fileID: 545721766214500676, guid: 6955bea23dd8c514db08d7f1bc37320b, type: 3}
+  grassTile: {fileID: 1785565227581066036, guid: 8c5927ecebaeba74eb335f77f2626454, type: 3}
+  soilTile: {fileID: 545721766214500676, guid: 6955bea23dd8c514db08d7f1bc37320b, type: 3}
   plantedTile: {fileID: -3300748351920055465, guid: 6dbf74b4e72a3e64d8c5018618fdcb38, type: 3}
   grownTile: {fileID: 1375520229277953509, guid: 3a595d71a8a570d4ea6b67459ef12832, type: 3}
 --- !u!114 &878821793
@@ -1135,7 +1136,8 @@ MonoBehaviour:
   player: {fileID: 2076226352}
   interactDistance: 80
   growTime: 5
-  emptyTile: {fileID: 545721766214500676, guid: 6955bea23dd8c514db08d7f1bc37320b, type: 3}
+  grassTile: {fileID: 1785565227581066036, guid: 8c5927ecebaeba74eb335f77f2626454, type: 3}
+  soilTile: {fileID: 545721766214500676, guid: 6955bea23dd8c514db08d7f1bc37320b, type: 3}
   plantedTile: {fileID: -3300748351920055465, guid: 6dbf74b4e72a3e64d8c5018618fdcb38, type: 3}
   grownTile: {fileID: 1375520229277953509, guid: 3a595d71a8a570d4ea6b67459ef12832, type: 3}
 --- !u!114 &1514821992
@@ -1409,7 +1411,8 @@ MonoBehaviour:
   player: {fileID: 2076226352}
   interactDistance: 80
   growTime: 5
-  emptyTile: {fileID: 545721766214500676, guid: 6955bea23dd8c514db08d7f1bc37320b, type: 3}
+  grassTile: {fileID: 1785565227581066036, guid: 8c5927ecebaeba74eb335f77f2626454, type: 3}
+  soilTile: {fileID: 545721766214500676, guid: 6955bea23dd8c514db08d7f1bc37320b, type: 3}
   plantedTile: {fileID: -3300748351920055465, guid: 6dbf74b4e72a3e64d8c5018618fdcb38, type: 3}
   grownTile: {fileID: 1375520229277953509, guid: 3a595d71a8a570d4ea6b67459ef12832, type: 3}
 --- !u!114 &1923821354
