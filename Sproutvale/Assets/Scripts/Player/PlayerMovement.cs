@@ -1,30 +1,33 @@
 using UnityEngine;
 
-public class PlayerUIMove : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 400f;
-    RectTransform rect;
+    public float moveSpeed = 4f;
+
+    Rigidbody2D rb;
+    Vector2 move;
 
     void Awake()
     {
-        rect = GetComponent<RectTransform>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        // ⛔ STOP gerak kalau inventory terbuka
-        if (InventoryUI.isOpen)
+        // ⛔ STOP kalau inventory ATAU npc shop terbuka
+        if (InventoryUI.isOpen || NPCInteract.isShopOpen)
+        {
+            move = Vector2.zero;
             return;
+        }
 
-        float x = 0;
-        float y = 0;
+        move.x = Input.GetAxisRaw("Horizontal");
+        move.y = Input.GetAxisRaw("Vertical");
+        move = move.normalized;
+    }
 
-        if (Input.GetKey(KeyCode.A)) x = -1;
-        if (Input.GetKey(KeyCode.D)) x = 1;
-        if (Input.GetKey(KeyCode.W)) y = 1;
-        if (Input.GetKey(KeyCode.S)) y = -1;
-
-        Vector2 dir = new Vector2(x, y).normalized;
-        rect.anchoredPosition += dir * speed * Time.deltaTime;
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
     }
 }

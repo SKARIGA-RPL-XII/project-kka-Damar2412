@@ -1,13 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class InteractTile : MonoBehaviour
+public class FarmTile : MonoBehaviour
 {
-    public static InteractTile closestTile;
-
     [Header("Reference")]
-    public RectTransform player;
-    public float interactDistance = 45f;
+    public Transform player;
+    public float interactDistance = 1.2f;
 
     [Header("Growth")]
     public float growTime = 5f;
@@ -16,14 +13,13 @@ public class InteractTile : MonoBehaviour
     public int minHarvest = 3;
     public int maxHarvest = 5;
 
-    [Header("Tile Images")]
+    [Header("Sprites")]
     public Sprite grassTile;
     public Sprite soilTile;
     public Sprite plantedTile;
     public Sprite grownTile;
 
-    RectTransform tileRect;
-    Image tileImage;
+    SpriteRenderer sr;
 
     enum TileState { Grass, Soil, Planted, Grown }
     TileState state = TileState.Grass;
@@ -32,18 +28,13 @@ public class InteractTile : MonoBehaviour
 
     void Awake()
     {
-        tileRect = GetComponent<RectTransform>();
-        tileImage = GetComponent<Image>();
-        tileImage.sprite = grassTile;
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = grassTile;
     }
 
     void Update()
     {
-        if (player == null) return;
-
-        UpdateClosestTile();
-
-        if (closestTile != this) return; // ⛔ bukan tile terdekat
+        if (!PlayerNear()) return; // 🔥 KUNCI UTAMA
 
         HandleHoe();
         HandlePlant();
@@ -51,51 +42,33 @@ public class InteractTile : MonoBehaviour
         HandleHarvest();
     }
 
-    void UpdateClosestTile()
+    bool PlayerNear()
     {
-        float dist = Vector2.Distance(
-            player.anchoredPosition,
-            tileRect.anchoredPosition
-        );
-
-        if (dist > interactDistance) return;
-
-        if (closestTile == null)
-        {
-            closestTile = this;
-            return;
-        }
-
-        float closestDist = Vector2.Distance(
-            player.anchoredPosition,
-            closestTile.tileRect.anchoredPosition
-        );
-
-        if (dist < closestDist)
-        {
-            closestTile = this;
-        }
+        return Vector2.Distance(transform.position, player.position) <= interactDistance;
     }
 
+    // 🖱 CANGKUL
     void HandleHoe()
     {
-        if (state == TileState.Grass && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && state == TileState.Grass)
         {
             state = TileState.Soil;
-            tileImage.sprite = soilTile;
+            sr.sprite = soilTile;
         }
     }
 
+    // 🌱 TANAM
     void HandlePlant()
     {
-        if (state == TileState.Soil && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && state == TileState.Soil)
         {
             state = TileState.Planted;
             growTimer = 0f;
-            tileImage.sprite = plantedTile;
+            sr.sprite = plantedTile;
         }
     }
 
+    // ⏳ TUMBUH
     void HandleGrowth()
     {
         if (state != TileState.Planted) return;
@@ -104,24 +77,20 @@ public class InteractTile : MonoBehaviour
         if (growTimer >= growTime)
         {
             state = TileState.Grown;
-            tileImage.sprite = grownTile;
+            sr.sprite = grownTile;
         }
     }
 
+    // 🌾 PANEN
     void HandleHarvest()
     {
-        if (state == TileState.Grown && Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && state == TileState.Grown)
         {
-            Harvest();
+            int amount = Random.Range(minHarvest, maxHarvest + 1);
+            Debug.Log("Panen: " + amount);
+
+            state = TileState.Soil;
+            sr.sprite = soilTile;
         }
-    }
-
-    void Harvest()
-    {
-        int amount = Random.Range(minHarvest, maxHarvest + 1);
-        Debug.Log($"Panen {amount} item!");
-
-        state = TileState.Soil;
-        tileImage.sprite = soilTile;
     }
 }

@@ -1,70 +1,45 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class NpcColorInteract : MonoBehaviour
+public class NPCInteract : MonoBehaviour
 {
-    public RectTransform player;   // drag PLAYER IMAGE ke sini
-    public float interactDistance = 80f;
+    public static bool isShopOpen = false; // ⬅️ INI WAJIB ADA
 
-    public float shakeSpeed = 25f;
-    public float shakeStrength = 15f;
+    public GameObject shopUI;
+    bool playerNear = false;
 
-    RectTransform npcRect;
-    Image npcImage;
-
-    Color defaultColor;
-    bool isGreen = false;
-    bool shakePlayer = false;
-    float timer = 0f;
-    Vector2 originalPlayerPos;
-
-    void Awake()
+    void Start()
     {
-        npcRect = GetComponent<RectTransform>();
-        npcImage = GetComponent<Image>();
-        defaultColor = npcImage.color;
+        shopUI.SetActive(false);
     }
 
     void Update()
     {
-        if (player == null) return;
-
-        // 🔥 GERAK PAKSA PLAYER
-        if (shakePlayer)
+        if (playerNear && Input.GetKeyDown(KeyCode.E))
         {
-            timer += Time.deltaTime * shakeSpeed;
-
-            float x = Mathf.Sin(timer) * shakeStrength;
-            player.anchoredPosition = originalPlayerPos + new Vector2(x, 0);
+            shopUI.SetActive(!shopUI.activeSelf);
+            isShopOpen = shopUI.activeSelf;
         }
 
-        float dist = Vector2.Distance(
-            player.anchoredPosition,
-            npcRect.anchoredPosition
-        );
-
-        if (dist <= interactDistance && Input.GetKeyDown(KeyCode.E))
+        if (isShopOpen && Input.GetKeyDown(KeyCode.Escape))
         {
-            Toggle();
+            shopUI.SetActive(false);
+            isShopOpen = false;
         }
     }
 
-    void Toggle()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        isGreen = !isGreen;
-        npcImage.color = isGreen ? Color.green : defaultColor;
+        if (other.CompareTag("Player"))
+            playerNear = true;
+    }
 
-        shakePlayer = !shakePlayer;
-
-        if (shakePlayer)
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
-            originalPlayerPos = player.anchoredPosition;
-            timer = 0f;
-        }
-        else
-        {
-            // balikin posisi normal
-            player.anchoredPosition = originalPlayerPos;
+            playerNear = false;
+            shopUI.SetActive(false);
+            isShopOpen = false;
         }
     }
 }

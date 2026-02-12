@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 3a595d71a8a570d4ea6b67459ef12832
+guid: 5b23e242b96eb1e4085d5e97774e2334
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1375520229277953509
-    second: Grow tomato_0
+      213: -1448967846403478793
+    second: ChatGPT Image Jan 27, 2026, 11_07_423 AM_0
+  - first:
+      213: 5028717231081288035
+    second: ChatGPT Image Jan 27, 2026, 11_07_423 AM_1
+  - first:
+      213: 2846806315939420822
+    second: ChatGPT Image Jan 27, 2026, 11_07_423 AM_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Grow tomato_0
+      name: ChatGPT Image Jan 27, 2026, 11_07_423 AM_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 212
-        height: 158
+        x: 0
+        y: 0
+        width: 240
+        height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ede9775c54d61310800000000000000
-      internalID: 1375520229277953509
+      spriteID: 7fa6820bb6b34ebe0800000000000000
+      internalID: -1448967846403478793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChatGPT Image Jan 27, 2026, 11_07_423 AM_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 28
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3617c7aada799c540800000000000000
+      internalID: 5028717231081288035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChatGPT Image Jan 27, 2026, 11_07_423 AM_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69a58e5e243e18720800000000000000
+      internalID: 2846806315939420822
       vertices: []
       indices: 
       edges: []
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Grow tomato_0: 1375520229277953509
+      ChatGPT Image Jan 27, 2026, 11_07_423 AM_0: -1448967846403478793
+      ChatGPT Image Jan 27, 2026, 11_07_423 AM_1: 5028717231081288035
+      ChatGPT Image Jan 27, 2026, 11_07_423 AM_2: 2846806315939420822
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
